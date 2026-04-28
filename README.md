@@ -1,57 +1,151 @@
-Azure Entra ID Conditional Access Lab
-Overview
+# Azure Entra Conditional Access Design Lab
 
-This project simulates a real-world Conditional Access design scenario using Microsoft Entra ID.
+## Overview
+This project demonstrates the design of Conditional Access policies using Microsoft Entra ID, based on a Zero Trust security model.
 
-The objective was to design and understand how organizations enforce secure access through Multi-Factor Authentication (MFA), location-based restrictions, privileged access controls, and risk-based policies following Zero Trust principles.
+Due to Microsoft Entra ID Free tier limitations, Conditional Access policies could not be implemented directly. Instead, this project focuses on designing real-world security controls based on enterprise best practices.
 
-Objectives
-Design Conditional Access policies for secure authentication
-Enforce Multi-Factor Authentication (MFA)
-Implement location-based access restrictions
-Apply stricter controls to privileged accounts
-Understand risk-based sign-in protection
-Analyze limitations of the Free tier in Microsoft Entra ID
-Environment
-Microsoft Azure
-Microsoft Entra ID (Free Tier)
-Conditional Access (Design Only)
-Policies Designed
-1. Require MFA for All Users
-Users: All users
-Apps: All cloud apps
-Conditions: Any location
-Control: Require MFA
-2. Block Access from Outside Portugal
-Users: All users
-Apps: All cloud apps
-Conditions: Any location excluding Portugal
-Control: Block access
-3. Privileged Account Protection
-Users: Directory roles (Admins)
-Apps: All cloud apps
-Conditions: Any location
-Controls:
-Require MFA
-Require compliant device (if available)
-4. Block High-Risk Sign-ins
-Users: All users
-Apps: All cloud apps
-Conditions: High sign-in risk
-Control: Block access
-Expected Outcomes
-Reduced risk of credential compromise through MFA
-Restricted access from untrusted locations
-Strong protection of administrative accounts
-Prevention of suspicious or high-risk sign-ins
-Key Learnings
-Conditional Access policy design fundamentals
-Zero Trust security principles in practice
-Importance of MFA in identity protection
-Role of location and risk signals in access control
-Differences between Free and Premium Entra ID capabilities
-Notes
+---
 
-This project was developed for learning and portfolio purposes.
+## Scenario
+This project simulates a small organization that needs to secure access to its cloud resources.
 
-Due to the use of the Microsoft Entra ID Free tier, Conditional Access policies could not be implemented, but the design reflects real-world enterprise configurations.
+The organization aims to:
+- Ensure only legitimate users can access systems
+- Enforce Multi-Factor Authentication (MFA)
+- Restrict access based on location
+- Protect against risky sign-ins
+- Allow access only from compliant devices
+
+### Actors
+- **Admin User** – manages the environment and security configurations  
+- **Standard User (João Silva)** – represents a typical employee  
+
+### Resources
+- Microsoft Entra ID tenant  
+- Cloud applications  
+- My Apps portal  
+
+---
+
+## Conditional Access Limitation
+
+Microsoft Entra ID Free tier does not support Conditional Access policies.
+
+As a result:
+- Policies cannot be created or enforced
+- Advanced security features are restricted
+
+This project adapts to this limitation by focusing on **security design and architecture**, which reflects real-world planning in enterprise environments.
+
+---
+
+## Conditional Access Policy Design
+
+### Policy 1 — Require MFA for all users
+
+**Goal:**  
+Ensure all users must perform Multi-Factor Authentication when accessing cloud resources.
+
+**Configuration (Design):**
+- Users: All users
+- Cloud apps: All cloud apps
+- Conditions: Any location
+- Grant control: Require MFA
+
+**Expected Outcome:**  
+All users must complete MFA before gaining access, reducing the risk of compromised credentials.
+
+---
+
+### Policy 2 — Block access from outside allowed locations
+
+**Goal:**  
+Restrict access to company resources only from trusted geographic locations.
+
+**Configuration (Design):**
+- Users: All users
+- Cloud apps: All cloud apps
+- Conditions:
+  - Location: Any location EXCEPT Portugal
+- Grant control: Block access
+
+**Expected Outcome:**  
+Any login attempt from outside Portugal will be blocked, reducing exposure to external threats.
+
+**Note:**  
+This policy requires Microsoft Entra ID Premium (Conditional Access).
+
+---
+
+### Policy 3 — Enforce stricter controls for administrators
+
+**Goal:**  
+Apply stronger security controls to privileged accounts.
+
+**Configuration (Design):**
+- Users: Directory roles (e.g., Global Administrator)
+- Cloud apps: All cloud apps
+- Conditions: Any location
+- Grant controls:
+  - Require MFA
+  - Require compliant device (if using Intune)
+
+**Expected Outcome:**  
+Administrative users must use MFA and secure devices, reducing the risk of privilege compromise.
+
+**Note:**  
+Device compliance requires Microsoft Entra ID Premium and Microsoft Intune.
+
+---
+
+### Policy 4 — Block high-risk sign-ins
+
+**Goal:**  
+Prevent access when a sign-in is detected as high risk.
+
+**Configuration (Design):**
+- Users: All users
+- Cloud apps: All cloud apps
+- Conditions:
+  - Sign-in risk: High
+- Grant control: Block access
+
+**Expected Outcome:**  
+High-risk login attempts are automatically blocked, preventing unauthorized access.
+
+**Note:**  
+Sign-in risk evaluation requires Microsoft Entra ID Premium P2.
+
+---
+
+## Key Learnings
+
+- Understanding of Conditional Access and Zero Trust principles  
+- Ability to design security policies based on real-world scenarios  
+- Awareness of Microsoft Entra ID licensing limitations  
+- Practical approach to adapting security architecture when full implementation is not possible  
+
+---
+
+## Screenshots
+
+### Conditional Access Overview
+[Ver Screenshot](Screenshots/01-conditional-access-overview.png)
+
+### License Limitation
+[Ver Screenshot](Screenshots/02-conditional-access-license-limitation.png)
+
+---
+
+## Conclusion
+
+This project demonstrates a security-first approach to Identity and Access Management using Microsoft Entra ID.
+
+Although Conditional Access policies could not be implemented due to licensing limitations, the design reflects real-world enterprise security practices based on Zero Trust principles.
+
+The project highlights the importance of:
+- Strong authentication (MFA)
+- Location-based access control
+- Privileged account protection
+- Risk-based access decisions
