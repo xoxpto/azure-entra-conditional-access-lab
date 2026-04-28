@@ -131,10 +131,10 @@ Sign-in risk evaluation requires Microsoft Entra ID Premium P2.
 ## Screenshots
 
 ### Conditional Access Overview
-[Ver Screenshot](Screenshots/01-conditional-access-overview.png)
+[See Screenshot](https://github.com/xoxpto/azure-entra-conditional-access-lab/blob/main/screenshots/01-conditional-access-overview.png)
 
 ### License Limitation
-[Ver Screenshot](Screenshots/02-conditional-access-license-limitation.png)
+[See Screenshot](https://github.com/xoxpto/azure-entra-conditional-access-lab/blob/main/screenshots/02-conditional-access-license-limitation.png)
 
 ---
 
